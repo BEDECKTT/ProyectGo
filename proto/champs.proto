@@ -1,0 +1,50 @@
+
+syntax = "proto3";
+
+package champs;
+
+option go_package =  "champslol-grcp/proto;champs";
+
+
+service ChampService {
+
+    rpc GetChampInfo(ChampRequest) returns (ChampResponse);
+    rpc GetChampList( Empty ) returns ( stream ChampResponse );
+    rpc AddChamps( stream NewChampRequest) returns ( AddChampResponse );
+    rpc GetChampsbyType( stream ChampTypeRequest ) returns ( stream ChampResponse );
+}
+
+
+
+
+message ChampRequest{
+
+    string name = 1;
+}
+
+message ChampResponse {
+  string name = 1;
+  string rol = 2;
+  string type = 3;
+}
+
+message NewChampRequest {
+  string name = 1;
+  string rol = 2;
+  string type = 3;
+}
+
+message AddChampResponse {
+  int32 count = 1;
+}
+
+message Empty{}
+
+message ChampTypeRequest {
+    string type = 1;
+}
+
+
+
+
+

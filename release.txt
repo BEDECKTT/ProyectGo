@@ -1,0 +1,16 @@
+docker build -t grpc-champslol-server:latest .
+
+docker run -d -p 50051:50051 -p 8080:8080 --name grpc-champslol-server grpc-champslol-server:latest
+
+az login 
+
+az acr login --name lenguajescrr
+
+docker tag grpc-champslol-server:latest lenguajescrr.azurecr.io/grpc-champslol-server:latest
+docker tag grpc-champslol-server:latest lenguajescrr.azurecr.io/grpc-champslol-server:0.0.1
+
+docker push lenguajescrr.azurecr.io/grpc-champslol-server:latest
+docker push lenguajescrr.azurecr.io/grpc-champslol-server:0.0.1
+
+
+
